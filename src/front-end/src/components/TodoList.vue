@@ -95,14 +95,22 @@ export default {
   }),
   created() {
     // get todo list by date
-    console.log(this.raw_date)
     axios.get('http://localhost:8080/todo', {
       params: {
         date: this.raw_date
       }
     }).then(res => {
-
-      this.todos.push(res.data)
+      for(let i=0; i<res.data.length; i++){
+        let todo = {
+          id: res.data[i].id,
+          title: res.data[i].title,
+          memo: res.data[i].memo,
+          done: res.data[i].done==0? false:true,
+          mod: false
+        }
+        console.log(todo);
+        this.todos.push(todo);
+      }
     }).catch(e => {
       console.log(e);
     })
@@ -141,13 +149,25 @@ export default {
         // axios remove
       }
     },
-    get () {
-      axios.get('/api/todo', {
+    get() {
+      axios.get('http://localhost:8080/todo', {
         params: {
           date: this.raw_date
         }
       }).then(res => {
-        console.log(res.data);
+        for(let i=0; i<res.data.length; i++){
+          let todo = {
+            id: res.data[i].id,
+            title: res.data[i].title,
+            memo: res.data[i].memo,
+            done: res.data[i].done==0? false:true,
+            mod: false
+          }
+          console.log(todo);
+          this.todos.push(todo);
+        }
+      }).catch(e => {
+        console.log(e);
       })
     }
   }

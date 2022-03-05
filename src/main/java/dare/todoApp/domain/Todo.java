@@ -19,8 +19,8 @@ public class Todo {
     private Long id;
     private String title;
     private String memo;
-    @CreatedDate
     private LocalDate date;
+    private int done;
 
     public Long getId() {
         return id;
@@ -62,5 +62,13 @@ public class Todo {
                 ", memo='" + memo + '\'' +
                 ", date=" + date +
                 '}';
+    }
+
+    public int getDone() {
+        return done;
+    }
+
+    public void setDone(int done) {
+        this.done = done;
     }
 }

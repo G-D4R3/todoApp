@@ -23,7 +23,6 @@ public class TodoService {
     }
 
     public Long addTodo(Todo todo) {
-        // todo.setDate(LocalDate.now());
         todoRepository.save(todo);
         return todo.getId();
     }
